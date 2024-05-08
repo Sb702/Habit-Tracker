@@ -11,5 +11,6 @@ router.patch('/Habits/:id', habitController.updateHabit);
 router.post('/users', userController.createUser);
 router.get('/users', userController.getUsers);
 router.delete('/users/:id', userController.deleteUser);
+router.post('/users/login', userController.loginUser);
 
 module.exports = router;

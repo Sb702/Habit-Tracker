@@ -32,4 +32,21 @@ exports.deleteUser = async (req, res) => {
     }
     };
 
+exports.loginUser = async (req, res) => {
+  try {
+    // Find user by email
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(400).send({ message: 'The email does not exist' });
+    }
+    // Validate password
+    if (req.body.password !== user.password) {
+      return res.status(400).send({ message: 'The password is invalid' });
+    }
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 // Add more controller methods as needed
