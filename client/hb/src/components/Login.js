@@ -1,10 +1,12 @@
 import {React, useState} from "react";
 import Habits from "./Habits";
+import CreateUser from "./CreateUser";
 
 
 export default function Login({ loggedIn, setLoggedIn, habits, updater, setUpdater, appID, setAppID}) {
 
   const [userdata, setUserdata] = useState({});
+  const [createUser, setCreateUser] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -65,8 +67,14 @@ export default function Login({ loggedIn, setLoggedIn, habits, updater, setUpdat
             </label>
             <button type="submit">Login</button>
           </form>
+          <button onClick={() => setCreateUser(true)}>Create User</button>
+          {createUser === true && 
+          <CreateUser createUser={createUser} />
+          }
+          
         </div>
       )}
+
 
 
     </div>
