@@ -5,7 +5,7 @@ import Login from "./components/Login";
 function App() {
   const [habits, setHabits] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const [updater, setUpdater] = useState(false);
   useEffect(() => {
     fetch("http://localhost:3000/habits")
       .then((response) => response.json())
@@ -15,7 +15,7 @@ function App() {
       .catch((error) => {
         console.error("There was an error!", error);
       });
-  }, []);
+  }, [updater]);
 
   // console.log("habits coming from App.js state: ", habits);
 
@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       <h1>Habit Tracker</h1>
 
-      <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} habits={habits} />
+      <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} habits={habits} updater={updater} setUpdater={setUpdater} />
     </div>
   );
 }

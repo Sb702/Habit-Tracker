@@ -1,7 +1,8 @@
 import {React, useState} from "react";
+import Habits from "./Habits";
 
 
-export default function Login({ loggedIn, setLoggedIn, habits }) {
+export default function Login({ loggedIn, setLoggedIn, habits, updater, setUpdater}) {
 
   const [userdata, setUserdata] = useState({});
 
@@ -38,6 +39,7 @@ export default function Login({ loggedIn, setLoggedIn, habits }) {
           <button onClick={() => setLoggedIn(false)}>Logout</button>
 
           <h2>Welcome! {userdata.name}</h2>
+          <Habits habits={habits} updater={updater} setUpdater={setUpdater} />
           <ul>
             {habits.map((habit) => (
               <li key={habit.id}>
