@@ -2,7 +2,7 @@ import {React, useState} from "react";
 import Habits from "./Habits";
 
 
-export default function Login({ loggedIn, setLoggedIn, habits, updater, setUpdater}) {
+export default function Login({ loggedIn, setLoggedIn, habits, updater, setUpdater, appID, setAppID}) {
 
   const [userdata, setUserdata] = useState({});
 
@@ -23,11 +23,12 @@ export default function Login({ loggedIn, setLoggedIn, habits, updater, setUpdat
           .then((data) => {
             console.log("data coming from login fetch: ", data);
             setUserdata(data);
+            setAppID(data._id);
+            setLoggedIn(true);
           })
           .catch((error) => {
             console.error("There was an error!", error);
           });
-          setLoggedIn(true);
       };
 
 
@@ -39,10 +40,10 @@ export default function Login({ loggedIn, setLoggedIn, habits, updater, setUpdat
           <button onClick={() => setLoggedIn(false)}>Logout</button>
 
           <h2>Welcome! {userdata.name}</h2>
-          <Habits habits={habits} updater={updater} setUpdater={setUpdater} />
+          <Habits habits={habits} updater={updater} setUpdater={setUpdater} userdata={userdata} />
           <ul>
             {habits.map((habit) => (
-              <li key={habit.id}>
+              <li key={habit._id}>
                 <h3>{habit.name}</h3>
                 <p>{habit.description}</p>
               </li>

@@ -6,16 +6,24 @@ function App() {
   const [habits, setHabits] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [updater, setUpdater] = useState(false);
-  useEffect(() => {
-    fetch("http://localhost:3000/habits")
+  const [appID, setAppID] = useState("");
+
+useEffect(() => {
+  console.log("appID: ", appID)
+  if (appID) {
+    const url = `http://localhost:3000/Habits/${appID}`;
+    console.log("URL: ", url);
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setHabits(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
-  }, [updater]);
+  }
+}, [updater, appID]);
 
   // console.log("habits coming from App.js state: ", habits);
 
@@ -25,7 +33,7 @@ function App() {
     <div className="App">
       <h1>Habit Tracker</h1>
 
-      <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} habits={habits} updater={updater} setUpdater={setUpdater} />
+      <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} habits={habits} updater={updater} setUpdater={setUpdater} appID={appID} setAppID={setAppID} />
     </div>
   );
 }

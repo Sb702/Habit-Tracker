@@ -1,7 +1,9 @@
 import {React, useState} from 'react'
 
-export default function Habits({ habits, updater, setUpdater}) {
+export default function Habits({ habits, updater, setUpdater, userdata}) {
     const [newHabit, setNewHabit] = useState("");
+    const [userid, setUserid] = useState("");
+
 
 
     const handleSubmit = (event) => {
@@ -9,13 +11,14 @@ export default function Habits({ habits, updater, setUpdater}) {
         const formData = new FormData(event.target);
         const habit = formData.get("habit");
         console.log("habit: ", habit);
+        setUserid(userdata._id);
 
         fetch("http://localhost:3000/Habits", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ "name": habit }),
+            body: JSON.stringify({ "name": habit, "userid": userid}),
         })
             .then((response) => response.json())
             .then((data) => {

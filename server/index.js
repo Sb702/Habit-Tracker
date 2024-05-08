@@ -11,6 +11,7 @@ connectDB();
 
 app.use(express.json());
 
+
 app.use('/', routes);
 
 app.listen(port, () => {
