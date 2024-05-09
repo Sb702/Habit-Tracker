@@ -56,6 +56,26 @@ export default function Login({
     };
   }
 
+  const handleComplete = (habit) => {
+    return () => {
+      fetch(`http://localhost:3000/Habits/${habit._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ complete: !habit.complete }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data coming from complete fetch: ", data);
+          setUpdater(!updater);
+        })
+        .catch((error) => {
+          console.error("There was an error!", error);
+        });
+    };
+  }
+
   return (
     <div>
       {loggedIn ? (
@@ -73,15 +93,15 @@ export default function Login({
           />
           <ul className="habits-list">
             {habits.map((habit) => (
-              <li key={habit._id} className="habit">
-                <h3>{habit.name}</h3>
-                <p>{habit.description}</p>
-                <button onClick={handleDelete(habit)}>Delete</button>
+              <li key={habit._id} className={habit.complete ? "habit-complete" : "habit"}>
+          <h3>{habit.name}</h3>
+          <button onClick={handleComplete(habit)}>Complete</button>
+          <button className="delete-btn" onClick={handleDelete(habit)}>Delete</button>
               </li>
             ))}
           </ul>
         </div>
-      ) : (
+            ) : (
         // Not logged in display
         <div className="login">
           <h2>Login</h2>

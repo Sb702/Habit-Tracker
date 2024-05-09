@@ -7,6 +7,7 @@ router.get('/Habits/:userid', habitController.getHabits);
 router.post('/Habits', habitController.addHabit);
 router.delete('/Habits/:id', habitController.deleteHabit);
 router.patch('/Habits/:id', habitController.updateHabit);
+router.put('/Habits/:id', habitController.completeHabit);
 
 router.post('/users', userController.createUser);
 router.get('/users', userController.getUsers);

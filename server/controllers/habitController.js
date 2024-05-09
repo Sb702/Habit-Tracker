@@ -56,3 +56,19 @@ exports.updateHabit = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
+
+exports.completeHabit = async (req, res) => {
+  try {
+    const habit = await Habit.findById(req.params.id);
+    if (habit) {
+      habit.complete = req.body.complete;
+      const updatedHabit = await habit.save();
+      res.json(updatedHabit);
+    } else {
+      res.status(404).json({ message: "Habit not found" });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: err.message });
+  }
+};

@@ -26,9 +26,37 @@
 }
 
 .habit {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 20px;
+    align-items: center;
     border-radius: 25px;
     background-color: gray;
     width: 80%;
     box-shadow: 0 2px 0px rgba(0, 0, 0, .8);
 }
 
+.habit-complete {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 20px;
+    align-items: center;
+    border-radius: 25px;
+    background-color: black;
+    opacity: 60%;
+    width: 80%;
+    box-shadow: 0 2px 0px rgba(0, 0, 0, .8);
+}
+
+.delete-btn {
+    background-color: #ff0000db;
+    border: none;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
