@@ -3,6 +3,7 @@ import Habits from "./Habits";
 import CreateUser from "./CreateUser";
 import "./Login.css";
 import Calendar from "./MyCalendar";
+import Stats from "./Stats";
 
 export default function Login({
   loggedIn,
@@ -43,7 +44,7 @@ export default function Login({
       });
   };
 
-  const handleDelete = ( habit) => {
+  const handleDelete = (habit) => {
     return () => {
       fetch(`http://localhost:3000/Habits/${habit._id}`, {
         method: "DELETE",
@@ -57,7 +58,7 @@ export default function Login({
           console.error("There was an error!", error);
         });
     };
-  }
+  };
 
   const handleComplete = (habit) => {
     return () => {
@@ -77,7 +78,7 @@ export default function Login({
           console.error("There was an error!", error);
         });
     };
-  }
+  };
 
   return (
     <div>
@@ -85,38 +86,53 @@ export default function Login({
         // Logged in display
         <div>
           <div className="logout-header">
-            <button className="btn" onClick={() => setLoggedIn(false)}>Logout</button>
-          <h2>Welcome! {userdata.name}</h2>
+            <button className="btn" onClick={() => setLoggedIn(false)}>
+              Logout
+            </button>
+            <h2>Welcome! {userdata.name}</h2>
           </div>
-<div className="habits-container">
-
-          <div className="habits-calendar">
-            <Calendar date={date} setDate={setDate}/>
+          <div className="habits-container">
+            <div className="habits-calendar">
+              <Calendar date={date} setDate={setDate} />
             </div>
 
-<div className="habits-wrap">
-          <Habits
-            habits={habits}
-            updater={updater}
-            setUpdater={setUpdater}
-            userdata={userdata}
-            date={date}
-          />
-          <ul className="habits-list">
-            {habits.map((habit) => (
-              <li key={habit._id} className={habit.complete ? "habit-complete" : "habit"}>
-          <h3>{habit.name}</h3>
-          <p>{habit.date}</p>
-          <button onClick={handleComplete(habit)}>Complete</button>
-          <button className="delete-btn" onClick={handleDelete(habit)}>Delete</button>
-              </li>
-            ))}
-          </ul>
+            <div className="habits-wrap">
+              <Habits
+                habits={habits}
+                updater={updater}
+                setUpdater={setUpdater}
+                userdata={userdata}
+                date={date}
+              />
+              <ul className="habits-list">
+                {habits.map((habit) => (
+                  <li
+                    key={habit._id}
+                    className={habit.complete ? "habit-complete" : "habit"}
+                  >
+                    <h3>{habit.name}</h3>
+                    <p>{habit.date}</p>
+                    <button onClick={handleComplete(habit)}>Complete</button>
+                    <button
+                      className="delete-btn"
+                      onClick={handleDelete(habit)}
+                    >
+                      Delete
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-</div>
+
+              <div className="stats-container">
+                <Stats habits={habits} date={date}/>
+
+                </div>
+
 
         </div>
-            ) : (
+      ) : (
         // Not logged in display
         <div className="login">
           <h2>Login</h2>
@@ -129,9 +145,13 @@ export default function Login({
               Password:
               <input type="password" name="password" />
             </label>
-            <button className="btn" type="submit">Login</button>
+            <button className="btn" type="submit">
+              Login
+            </button>
           </form>
-          <button className="btn" onClick={() => setCreateUser(true)}>Create User</button>
+          <button className="btn" onClick={() => setCreateUser(true)}>
+            Create User
+          </button>
           {createUser === true && <CreateUser createUser={createUser} />}
         </div>
       )}
