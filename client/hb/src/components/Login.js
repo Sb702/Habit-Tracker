@@ -103,6 +103,7 @@ export default function Login({
             {habits.map((habit) => (
               <li key={habit._id} className={habit.complete ? "habit-complete" : "habit"}>
           <h3>{habit.name}</h3>
+          <p>{habit.date}</p>
           <button onClick={handleComplete(habit)}>Complete</button>
           <button className="delete-btn" onClick={handleDelete(habit)}>Delete</button>
               </li>
