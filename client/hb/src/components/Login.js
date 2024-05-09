@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import Habits from "./Habits";
 import CreateUser from "./CreateUser";
 import "./Login.css";
+import Calendar from "./MyCalendar";
 
 export default function Login({
   loggedIn,
@@ -85,6 +86,13 @@ export default function Login({
             <button className="btn" onClick={() => setLoggedIn(false)}>Logout</button>
           <h2>Welcome! {userdata.name}</h2>
           </div>
+<div className="habits-container">
+
+          <div className="habits-calendar">
+            <Calendar />
+            </div>
+
+<div className="habits-wrap">
           <Habits
             habits={habits}
             updater={updater}
@@ -100,6 +108,9 @@ export default function Login({
               </li>
             ))}
           </ul>
+          </div>
+</div>
+
         </div>
             ) : (
         // Not logged in display

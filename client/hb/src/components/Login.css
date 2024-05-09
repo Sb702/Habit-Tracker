@@ -4,6 +4,19 @@
     justify-content: space-around;
 }
 
+.habits-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.habits-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%
+}
+
 .btn {
     background-color: #0004ff;
     border: none;
@@ -32,7 +45,7 @@
     align-items: center;
     border-radius: 25px;
     background-color: gray;
-    width: 80%;
+    width: 100%;
     box-shadow: 0 2px 0px rgba(0, 0, 0, .8);
 }
 
@@ -44,7 +57,7 @@
     border-radius: 25px;
     background-color: black;
     opacity: 60%;
-    width: 80%;
+    width: 98%;
     box-shadow: 0 2px 0px rgba(0, 0, 0, .8);
 }
 
