@@ -12,6 +12,8 @@ export default function Login({
   setUpdater,
   appID,
   setAppID,
+  date,
+  setDate,
 }) {
   const [userdata, setUserdata] = useState({});
   const [createUser, setCreateUser] = useState(false);
@@ -89,7 +91,7 @@ export default function Login({
 <div className="habits-container">
 
           <div className="habits-calendar">
-            <Calendar />
+            <Calendar date={date} setDate={setDate}/>
             </div>
 
 <div className="habits-wrap">
