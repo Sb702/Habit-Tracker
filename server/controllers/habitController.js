@@ -28,7 +28,7 @@ exports.addHabit = async (req, res) => {
 
 exports.deleteHabit = async (req, res) => {
   try {
-    const habit = await Habit.findById(req.params.id);
+    const habit = await Habit.findByIdAndDelete(req.params.id);
     if (habit) {
       await habit.deleteOne();
       res.json({ message: "Habit removed" });

@@ -1,59 +1,88 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import Habits from "./Habits";
 import CreateUser from "./CreateUser";
+import "./Login.css";
 
-
-export default function Login({ loggedIn, setLoggedIn, habits, updater, setUpdater, appID, setAppID}) {
-
+export default function Login({
+  loggedIn,
+  setLoggedIn,
+  habits,
+  updater,
+  setUpdater,
+  appID,
+  setAppID,
+}) {
   const [userdata, setUserdata] = useState({});
   const [createUser, setCreateUser] = useState(false);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const email = formData.get("email");
-        const password = formData.get("password");
-    
-        fetch("http://localhost:3000/users/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("data coming from login fetch: ", data);
-            setUserdata(data);
-            setAppID(data._id);
-            setLoggedIn(true);
-          })
-          .catch((error) => {
-            console.error("There was an error!", error);
-          });
-      };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const email = formData.get("email");
+    const password = formData.get("password");
 
+    fetch("http://localhost:3000/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("data coming from login fetch: ", data);
+        setUserdata(data);
+        setAppID(data._id);
+        setLoggedIn(true);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  };
+
+  const handleDelete = ( habit) => {
+    return () => {
+      fetch(`http://localhost:3000/Habits/${habit._id}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data coming from delete fetch: ", data);
+          setUpdater(!updater);
+        })
+        .catch((error) => {
+          console.error("There was an error!", error);
+        });
+    };
+  }
 
   return (
     <div>
       {loggedIn ? (
+        // Logged in display
         <div>
-          <h2>Logout</h2>
-          <button onClick={() => setLoggedIn(false)}>Logout</button>
-
+          <div className="logout-header">
+            <button className="btn" onClick={() => setLoggedIn(false)}>Logout</button>
           <h2>Welcome! {userdata.name}</h2>
-          <Habits habits={habits} updater={updater} setUpdater={setUpdater} userdata={userdata} />
-          <ul>
+          </div>
+          <Habits
+            habits={habits}
+            updater={updater}
+            setUpdater={setUpdater}
+            userdata={userdata}
+          />
+          <ul className="habits-list">
             {habits.map((habit) => (
-              <li key={habit._id}>
+              <li key={habit._id} className="habit">
                 <h3>{habit.name}</h3>
                 <p>{habit.description}</p>
+                <button onClick={handleDelete(habit)}>Delete</button>
               </li>
             ))}
           </ul>
-
         </div>
       ) : (
+        // Not logged in display
         <div className="login">
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>
@@ -65,18 +94,12 @@ export default function Login({ loggedIn, setLoggedIn, habits, updater, setUpdat
               Password:
               <input type="password" name="password" />
             </label>
-            <button type="submit">Login</button>
+            <button className="btn" type="submit">Login</button>
           </form>
-          <button onClick={() => setCreateUser(true)}>Create User</button>
-          {createUser === true && 
-          <CreateUser createUser={createUser} />
-          }
-          
+          <button className="btn" onClick={() => setCreateUser(true)}>Create User</button>
+          {createUser === true && <CreateUser createUser={createUser} />}
         </div>
       )}
-
-
-
     </div>
   );
 }
