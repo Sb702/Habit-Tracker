@@ -100,6 +100,7 @@ export default function Login({
             updater={updater}
             setUpdater={setUpdater}
             userdata={userdata}
+            date={date}
           />
           <ul className="habits-list">
             {habits.map((habit) => (

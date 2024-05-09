@@ -17,6 +17,7 @@ exports.addHabit = async (req, res) => {
     const habit = new Habit({
       name: req.body.name,
       userid: req.body.userid,
+      date: req.body.date,
     });
     const newHabit = await habit.save();
     res.json(newHabit);

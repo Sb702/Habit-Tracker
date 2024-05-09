@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
 
-export default function Habits({ habits, updater, setUpdater, userdata}) {
+export default function Habits({ habits, updater, setUpdater, userdata, date}) {
     const [newHabit, setNewHabit] = useState("");
     const [userid, setUserid] = useState("");
 
@@ -13,12 +13,21 @@ export default function Habits({ habits, updater, setUpdater, userdata}) {
         console.log("habit: ", habit);
         setUserid(userdata._id);
 
+        const formatDate = (date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed in JS
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`; // Returns date as "YYYY-MM-DD"
+        };
+        const formattedDate = formatDate(date);
+        console.log("Submitted Date: ", formattedDate);
+
         fetch("http://localhost:3000/Habits", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ "name": habit, "userid": userid}),
+            body: JSON.stringify({ "name": habit, "userid": userid, "date": formattedDate}),
         })
             .then((response) => response.json())
             .then((data) => {
