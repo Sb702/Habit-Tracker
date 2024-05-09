@@ -3,7 +3,7 @@ const Habit = require("../models/habitmodel");
 exports.getHabits = async (req, res) => {
   try {
     console.log('Received userid: ', req.params.userid);
-    const habits = await Habit.find({ userid: req.params.userid });
+    const habits = await Habit.find({ userid: req.params.userid, date: req.params.date });
     console.log('habits: ', habits);
     res.json(habits);
   } catch (err) {

@@ -11,7 +11,7 @@ function App() {
 useEffect(() => {
   console.log("appID: ", appID)
   if (appID) {
-    const url = `http://localhost:3000/Habits/${appID}`;
+    const url = `http://localhost:3000/Habits/${appID}/2024-05-09`;
     console.log("URL: ", url);
     fetch(url)
       .then((response) => response.json())

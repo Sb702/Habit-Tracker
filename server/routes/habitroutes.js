@@ -3,7 +3,7 @@ const router = express.Router();
 const habitController = require('../controllers/habitController');
 const userController = require('../controllers/userController');
 
-router.get('/Habits/:userid', habitController.getHabits);
+router.get('/Habits/:userid/:date', habitController.getHabits);
 router.post('/Habits', habitController.addHabit);
 router.delete('/Habits/:id', habitController.deleteHabit);
 router.patch('/Habits/:id', habitController.updateHabit);
