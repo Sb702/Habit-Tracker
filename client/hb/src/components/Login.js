@@ -18,6 +18,7 @@ export default function Login({
 }) {
   const [userdata, setUserdata] = useState({});
   const [createUser, setCreateUser] = useState(false);
+  const [createhabit, setCreateHabit] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -80,6 +81,10 @@ export default function Login({
     };
   };
 
+  function handleCreateClick() {
+    setCreateHabit(!createhabit);
+  }
+
   return (
     <div>
       {loggedIn ? (
@@ -97,13 +102,25 @@ export default function Login({
             </div>
 
             <div className="habits-wrap">
-              <Habits
+              {/* <Habits
                 habits={habits}
                 updater={updater}
                 setUpdater={setUpdater}
                 userdata={userdata}
                 date={date}
-              />
+              /> */}
+
+              <button onClick={handleCreateClick}>Create Habit</button>
+              {createhabit === true && (
+                <Habits
+                  habits={habits}
+                  updater={updater}
+                  setUpdater={setUpdater}
+                  userdata={userdata}
+                  date={date}
+                />
+              )}
+
               <ul className="habits-list">
                 {habits.map((habit) => (
                   <li

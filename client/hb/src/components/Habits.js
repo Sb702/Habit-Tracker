@@ -1,4 +1,5 @@
 import {React, useState} from 'react'
+import './Habits.css'
 
 export default function Habits({ habits, updater, setUpdater, userdata, date}) {
     const [newHabit, setNewHabit] = useState("");
@@ -42,7 +43,7 @@ export default function Habits({ habits, updater, setUpdater, userdata, date}) {
 
 
   return (
-    <div>
+    <div className='habits-form-wrap'>
         Enter Your Habits
 
         <form onSubmit={handleSubmit}>
