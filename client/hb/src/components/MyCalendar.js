@@ -6,7 +6,7 @@ function MyCalendar({ date, setDate }) {
 
   const onChange = (date) => {
     setDate(date);
-    console.log(date);
+    // console.log(date);
   };
 
   const formatDate = (date) => {

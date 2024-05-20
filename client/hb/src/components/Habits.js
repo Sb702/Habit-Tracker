@@ -11,7 +11,7 @@ export default function Habits({ habits, updater, setUpdater, userdata, date}) {
         event.preventDefault();
         const formData = new FormData(event.target);
         const habit = formData.get("habit");
-        console.log("habit: ", habit);
+        // console.log("habit: ", habit);
         setUserid(userdata._id);
 
         const formatDate = (date) => {
@@ -21,7 +21,7 @@ export default function Habits({ habits, updater, setUpdater, userdata, date}) {
             return `${year}-${month}-${day}`; // Returns date as "YYYY-MM-DD"
         };
         const formattedDate = formatDate(date);
-        console.log("Submitted Date: ", formattedDate);
+        // console.log("Submitted Date: ", formattedDate);
 
         fetch("http://localhost:3000/Habits", {
             method: "POST",
@@ -32,7 +32,7 @@ export default function Habits({ habits, updater, setUpdater, userdata, date}) {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log("data coming from habit fetch: ", data);
+                // console.log("data coming from habit fetch: ", data);
                 setNewHabit(data);
                 setUpdater(!updater);
             })

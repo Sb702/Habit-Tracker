@@ -147,8 +147,7 @@ useEffect(() => {
       const selectedDayHabits = await selectedDayHabitsResponse.json();
 
       todaysHabits.forEach(async (habit) => {
-        const habitExists = selectedDayHabits.some((selectedHabit) => selectedHabit.id === habit.id);
-
+        const habitExists = selectedDayHabits.some((selectedHabit) => selectedHabit.name === habit.name);
         if (!habitExists) {
           const response = await fetch("http://localhost:3000/Habits", {
             method: "POST",
