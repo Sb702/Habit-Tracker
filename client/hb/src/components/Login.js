@@ -4,6 +4,16 @@ import CreateUser from "./CreateUser";
 import "./Login.css";
 import Calendar from "./MyCalendar";
 import Stats from "./Stats";
+import {
+  Button,
+  TextField,
+  Typography,
+  ListItem,
+  ListItemText,
+  Switch,
+  Fab,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Login({
   loggedIn,
@@ -91,9 +101,8 @@ export default function Login({
         // Logged in display
         <div>
           <div className="logout-header">
-            <button className="btn" onClick={() => setLoggedIn(false)}>
-              Logout
-            </button>
+            <Button variant="contained" color="primary" onClick={() => setLoggedIn(false)}> Logout </Button>
+
             <h2>Welcome! {userdata.name}</h2>
           </div>
           <div className="habits-container">
@@ -110,7 +119,14 @@ export default function Login({
                 date={date}
               /> */}
 
-              <button onClick={handleCreateClick}>Create Habit</button>
+              {/* <button onClick={handleCreateClick}>Create Habit</button>  */}
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleCreateClick}
+              >
+                Create Habit
+              </Button>
               {createhabit === true && (
                 <Habits
                   habits={habits}
@@ -123,31 +139,34 @@ export default function Login({
 
               <ul className="habits-list">
                 {habits.map((habit) => (
-                  <li
+                  <ListItem
                     key={habit._id}
                     className={habit.complete ? "habit-complete" : "habit"}
                   >
-                    <h3>{habit.name}</h3>
-                    <p>{habit.date}</p>
-                    <button onClick={handleComplete(habit)}>Complete</button>
-                    <button
-                      className="delete-btn"
+                    <ListItemText variant="h3">{habit.name}</ListItemText>
+
+                    <ListItemText variant="p">{habit.date}</ListItemText>
+
+                    <Switch
+                      checked={habit.complete}
+                      onChange={handleComplete(habit)}
+                    />
+                    <Fab
+                      color="secondary"
+                      aria-label="delete"
                       onClick={handleDelete(habit)}
                     >
-                      Delete
-                    </button>
-                  </li>
+                      <DeleteIcon />
+                    </Fab>
+                  </ListItem>
                 ))}
               </ul>
             </div>
           </div>
 
-              <div className="stats-container">
-                <Stats habits={habits} date={date}/>
-
-                </div>
-
-
+          <div className="stats-container">
+            <Stats habits={habits} date={date} />
+          </div>
         </div>
       ) : (
         // Not logged in display
@@ -155,20 +174,40 @@ export default function Login({
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>
             <label>
-              Email:
-              <input type="text" name="email" />
+              {/* <input type="text" name="email" /> */}
+              <TextField
+                id="outlined-basic"
+                label="Enter Your Email.."
+                variant="outlined"
+                name="email"
+              />
             </label>
             <label>
-              Password:
-              <input type="password" name="password" />
+              {/* <input type="password" name="password" /> */}
+              <TextField
+                id="outlined-basic"
+                label="Enter Your Password.."
+                variant="outlined"
+                name="password"
+              />
             </label>
-            <button className="btn" type="submit">
-              Login
-            </button>
+            {/* <button className="btn" type="submit"> */}
+            <Button variant="contained" color="primary" type="submit">
+              Submit
+            </Button>
+            {/* Login
+            </button> */}
           </form>
-          <button className="btn" onClick={() => setCreateUser(true)}>
+          {/* <button className="btn" onClick={() => setCreateUser(true)}> */}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setCreateUser(true)}
+          >
             Create User
-          </button>
+          </Button>
+          {/* Create User
+          </button> */}
           {createUser === true && <CreateUser createUser={createUser} />}
         </div>
       )}

@@ -47,12 +47,14 @@
 .habit {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px 0 20px;
+    gap: 3%;
     align-items: center;
     border-radius: 25px;
     background-color: gray;
     width: 100%;
-    box-shadow: 0 2px 0px rgba(0, 0, 0, .8);
+    box-shadow: 0 2px 0px rgba(255, 255, 255, 0.451);
+    text-align: center;
+    padding: 12px;
 }
 
 .habit-complete {
@@ -66,6 +68,7 @@
     width: 98%;
     box-shadow: 0 2px 0px rgba(0, 0, 0, .8);
     z-index: 0;
+    text-align: center;
 }
 
 .delete-btn {
@@ -79,4 +82,5 @@
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
+    
 }

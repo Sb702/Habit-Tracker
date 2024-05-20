@@ -1,5 +1,7 @@
 import {React, useState} from 'react'
 import './Habits.css'
+import Button from '@mui/material/Button';
+import { TextField } from '@mui/material';
 
 export default function Habits({ habits, updater, setUpdater, userdata, date}) {
     const [newHabit, setNewHabit] = useState("");
@@ -44,14 +46,14 @@ export default function Habits({ habits, updater, setUpdater, userdata, date}) {
 
   return (
     <div className='habits-form-wrap'>
-        Enter Your Habits
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='habits-form'>
             <label>
-                Habit:
-                <input type="text" name="habit" />
+                <TextField id="outlined-basic" label="Enter Your Habit.." variant="outlined" name="habit" />
+                {/* <input type="text" name="habit" /> */}
             </label>
-            <button type="submit">Submit</button>
+            <Button variant='contained' color='primary' type="submit">Submit</Button>
+            {/* <button type="submit">Submit</button> */}
         </form>
     </div>
   )

@@ -8,3 +8,12 @@
     height: 30%;
     z-index: 1;
 } */
+
+.habits-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+}
