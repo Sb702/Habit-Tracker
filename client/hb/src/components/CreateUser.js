@@ -21,7 +21,7 @@ export default function CreateUser() {
         console.log("data coming from user fetch: ", data);
       })
       .catch((error) => {
-        console.error("There was an error!", error);
+        console.error("There was an error!", error.errmsg);
       });
   }
 
