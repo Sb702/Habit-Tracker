@@ -48,7 +48,9 @@ export default function Login({
         console.log("data coming from login fetch: ", data);
         setUserdata(data);
         setAppID(data._id);
-        setLoggedIn(true);
+        if(data._id !== undefined) {
+          setLoggedIn(true);
+        }
       })
       .catch((error) => {
         console.error("There was an error!", error);

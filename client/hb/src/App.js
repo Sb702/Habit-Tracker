@@ -40,6 +40,7 @@ function App() {
   }, [updater, appID, date]);
 
 useEffect(() => {
+  if(loggedIn) {
   const fetchData = async () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -91,8 +92,10 @@ useEffect(() => {
       console.error("There was an error!", error);
     }
   };
+  
 
   fetchData();
+}
 }, [ todaysDate, date]);
   
 
