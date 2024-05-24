@@ -25,7 +25,7 @@ export default function Habits({ habits, updater, setUpdater, userdata, date}) {
         const formattedDate = formatDate(date);
         // console.log("Submitted Date: ", formattedDate);
 
-        fetch("http://localhost:3000/Habits", {
+        fetch(`${process.env.API_URL}Habits`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

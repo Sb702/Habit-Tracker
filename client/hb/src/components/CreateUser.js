@@ -9,7 +9,7 @@ export default function CreateUser() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    fetch("http://localhost:3000/users", {
+    fetch(`${process.env.API_URL}users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -5,8 +5,10 @@ const port = 3000;
 const routes = require('./routes/habitroutes');
 const connectDB = require('./db');
 const cors = require('cors');
+const dotenv = require('dotenv');
 
 app.use(cors());
+dotenv.config();
 
 connectDB();
 
@@ -20,6 +22,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/hb/build', 'index.html'));
   });
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });

@@ -36,7 +36,7 @@ export default function Login({
     const email = formData.get("email");
     const password = formData.get("password");
 
-    fetch("http://localhost:3000/users/login", {
+    fetch(`${process.env.API_URL}users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export default function Login({
 
   const handleDelete = (habit) => {
     return () => {
-      fetch(`http://localhost:3000/Habits/${habit._id}`, {
+      fetch(`${process.env.API_URL}Habits/${habit._id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -76,7 +76,7 @@ export default function Login({
 
   const handleComplete = (habit) => {
     return () => {
-      fetch(`http://localhost:3000/Habits/${habit._id}`, {
+      fetch(`${process.env.API_URL}Habits/${habit._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

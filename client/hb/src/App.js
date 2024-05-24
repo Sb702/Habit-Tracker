@@ -26,7 +26,7 @@ function App() {
 
       const formattedDate = formatDate(date);
 
-      const url = `http://localhost:3000/Habits/${appID}/${formattedDate}`;
+      const url = `${process.env.API_URL}${appID}/${formattedDate}`;
       // console.log("URL: ", url);
       fetch(url)
         .then((response) => response.json())
@@ -62,16 +62,16 @@ useEffect(() => {
 
     
     try {
-      const todaysHabitsResponse = await fetch(`http://localhost:3000/Habits/${appID}/${formattedDate}`);
+      const todaysHabitsResponse = await fetch(`${process.env.API_URL}${appID}/${formattedDate}`);
       const todaysHabits = await todaysHabitsResponse.json();
 
-      const selectedDayHabitsResponse = await fetch(`http://localhost:3000/Habits/${appID}/${formattedSelectedDate}`);
+      const selectedDayHabitsResponse = await fetch(`${process.env.API_URL}${appID}/${formattedSelectedDate}`);
       const selectedDayHabits = await selectedDayHabitsResponse.json();
 
       todaysHabits.forEach(async (habit) => {
         const habitExists = selectedDayHabits.some((selectedHabit) => selectedHabit.name === habit.name);
         if (!habitExists) {
-          const response = await fetch("http://localhost:3000/Habits", {
+          const response = await fetch(`${process.env.API_URL}/Habits`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
