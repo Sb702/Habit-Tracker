@@ -30,13 +30,15 @@ export default function Login({
   const [createUser, setCreateUser] = useState(false);
   const [createhabit, setCreateHabit] = useState(false);
 
+  console.log(process.env.REACT_APP_API_URL)
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const email = formData.get("email");
     const password = formData.get("password");
 
-    fetch(`${process.env.API_URL}users/login`, {
+    fetch(`${process.env.REACT_APP_API_URL}users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
