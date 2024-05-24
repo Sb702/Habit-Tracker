@@ -16,6 +16,9 @@ app.use('/', routes);
 
 app.use(express.static(path.join(__dirname, '../client/hb/build')));
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/hb/build', 'index.html'));
+  });
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
