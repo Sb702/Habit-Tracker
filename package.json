@@ -1,0 +1,9 @@
+{
+    "name": "habits",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "cd server && npm start",
+      "heroku-postbuild": "cd client/hb && npm install && npm run build"
+    }
+  }
+  
