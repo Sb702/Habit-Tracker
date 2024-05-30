@@ -9,7 +9,7 @@ export default function CreateUser() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    fetch("http://localhost:3000/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
