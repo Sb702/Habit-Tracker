@@ -1,0 +1,17 @@
+{
+    "name": "my-mern-app",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "node server/server.js",
+      "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client/hb && npm run build --prefix client/hb"
+    },
+    "engines": {
+      "node": "14.x"
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "concurrently": "^5.3.0"
+    },
+    "devDependencies": {}
+  }
+  
