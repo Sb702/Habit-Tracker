@@ -16,8 +16,10 @@ function App() {
   // console.log(appID)
 
   useEffect(() => {
+    console.log(process.env.REACT_APP_API_URL);
+    console.log(process.env)
     if (appID) {
-      const formatDate = (date) => {
+      const formatDate = (date) => { 
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed in JS
         const day = String(date.getDate()).padStart(2, "0");
@@ -26,7 +28,7 @@ function App() {
 
       const formattedDate = formatDate(date);
 
-      const url = `http://localhost:5000/Habits/${appID}/${formattedDate}`;
+      const url = `${process.env.REACT_APP_API_URL}Habits/${appID}/${formattedDate}`;
       // console.log("URL: ", url);
       fetch(url)
         .then((response) => response.json())
@@ -62,16 +64,16 @@ useEffect(() => {
 
     
     try {
-      const todaysHabitsResponse = await fetch(`http://localhost:5000/Habits/${appID}/${formattedDate}`);
+      const todaysHabitsResponse = await fetch(`${process.env.REACT_APP_API_URL}Habits/${appID}/${formattedDate}`);
       const todaysHabits = await todaysHabitsResponse.json();
 
-      const selectedDayHabitsResponse = await fetch(`http://localhost:5000/Habits/${appID}/${formattedSelectedDate}`);
+      const selectedDayHabitsResponse = await fetch(`${process.env.REACT_APP_API_URL}Habits/${appID}/${formattedSelectedDate}`);
       const selectedDayHabits = await selectedDayHabitsResponse.json();
 
       todaysHabits.forEach(async (habit) => {
         const habitExists = selectedDayHabits.some((selectedHabit) => selectedHabit.name === habit.name);
         if (!habitExists) {
-          const response = await fetch("http://localhost:5000/Habits", {
+          const response = await fetch(`${process.env.REACT_APP_API_URL}Habits`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
