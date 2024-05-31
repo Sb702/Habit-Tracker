@@ -27,9 +27,9 @@ function App() {
       };
 
       const formattedDate = formatDate(date);
-
+      
       const url = `${process.env.REACT_APP_API_URL}Habits/${appID}/${formattedDate}`;
-      // console.log("URL: ", url);
+      console.log("URL: ", url);
       fetch(url)
         .then((response) => response.json())
         .then((data) => {

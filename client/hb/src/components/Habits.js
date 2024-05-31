@@ -7,7 +7,7 @@ export default function Habits({ habits, updater, setUpdater, userdata, date}) {
     const [newHabit, setNewHabit] = useState("");
     const [userid, setUserid] = useState("");
 
-
+    console.log(process.env.REACT_APP_API_URL)
 
     const handleSubmit = (event) => {
         event.preventDefault();
